@@ -1,7 +1,6 @@
 @if (usuario) {
   <div class="detail-content">
 
-    <!-- Tarjeta de perfil -->
     <div class="profile-card">
       <img [src]="usuario.avatarUrl" [alt]="usuario.name" class="profile-avatar" />
       <div class="profile-info">
@@ -11,35 +10,34 @@
       </div>
     </div>
 
-    <!-- Tarjeta de información -->
     <div class="info-card">
       <h3 class="card-title">
         <span class="material-symbols-outlined">person</span>
-        User Information
+        Información del Usuario
       </h3>
       <div class="info-list">
         <div class="info-row">
-          <span class="info-label">User ID</span>
+          <span class="info-label">ID de Usuario</span>
           <code class="info-code">#{{ usuario.id }}</code>
         </div>
         <div class="info-row">
-          <span class="info-label">Username</span>
+          <span class="info-label">Nombre de usuario</span>
           <span class="info-value">{{ usuario.username }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Name</span>
+          <span class="info-label">Nombre completo</span>
           <span class="info-value">{{ usuario.name }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Email</span>
+          <span class="info-label">Correo electrónico</span>
           <span class="info-value">{{ usuario.email }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Role</span>
+          <span class="info-label">Rol</span>
           <span class="info-value">{{ usuario.role }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Location</span>
+          <span class="info-label">Ubicación</span>
           <span class="info-value">
             <span class="material-symbols-outlined loc-icon">location_on</span>
             {{ usuario.location }}
@@ -48,11 +46,10 @@
       </div>
     </div>
 
-    <!-- Tarjeta de repositorios -->
     <div class="info-card">
       <h3 class="card-title">
         <span class="material-symbols-outlined">folder_code</span>
-        Repository IDs
+        IDs de Repositorios
       </h3>
       @if (usuario.repoIds.length > 0) {
         <div class="repo-list">
