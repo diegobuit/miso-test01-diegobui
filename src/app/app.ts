@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { SearchService } from './services/search.service';
 import { UsuarioService } from './usuario/services/usuario.service';
 import { RepositorioService } from './repositorio/services/repositorio.service';
@@ -11,18 +12,25 @@ import { RepositorioService } from './repositorio/services/repositorio.service';
   styleUrl: './app.css'
 })
 export class App {
-  isDark = false;
+  isDark      = false;
   sidebarOpen = false;
+  searchTerm  = '';
 
   private searchService      = inject(SearchService);
   private usuarioService     = inject(UsuarioService);
   private repositorioService = inject(RepositorioService);
+  private router             = inject(Router);
 
   constructor() {
-    // Pre-carga ambos servicios al arrancar la app para que los datos
-    // estén listos (o en camino) antes de que el usuario navegue.
     this.usuarioService.getUsuarios().subscribe();
     this.repositorioService.getRepositorios().subscribe();
+
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.searchTerm = '';
+      this.searchService.setTerm('');
+    });
   }
 
   toggleDark(): void {
@@ -39,7 +47,7 @@ export class App {
   }
 
   onSearch(event: Event): void {
-    const term = (event.target as HTMLInputElement).value;
-    this.searchService.setTerm(term);
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searchService.setTerm(this.searchTerm);
   }
 }
