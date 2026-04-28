@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SearchService } from './services/search.service';
+import { UsuarioService } from './usuario/services/usuario.service';
+import { RepositorioService } from './repositorio/services/repositorio.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,16 @@ export class App {
   isDark = false;
   sidebarOpen = false;
 
-  constructor(private searchService: SearchService) {}
+  private searchService      = inject(SearchService);
+  private usuarioService     = inject(UsuarioService);
+  private repositorioService = inject(RepositorioService);
+
+  constructor() {
+    // Pre-carga ambos servicios al arrancar la app para que los datos
+    // estén listos (o en camino) antes de que el usuario navegue.
+    this.usuarioService.getUsuarios().subscribe();
+    this.repositorioService.getRepositorios().subscribe();
+  }
 
   toggleDark(): void {
     this.isDark = !this.isDark;

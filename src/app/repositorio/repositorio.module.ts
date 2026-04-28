@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RepositorioRoutingModule } from './repositorio-routing.module';
+import { RouterModule } from '@angular/router';
 import { RepositorioListComponent } from './components/repositorio-list/repositorio-list.component';
+import { RepositorioDetailComponent } from './components/repositorio-detail/repositorio-detail.component';
 
 @NgModule({
-  declarations: [
-    RepositorioListComponent
-  ],
   imports: [
-    CommonModule,
-    RepositorioRoutingModule
+    RepositorioListComponent,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: RepositorioListComponent,
+        children: [
+          { path: ':id', component: RepositorioDetailComponent }
+        ]
+      }
+    ])
   ]
 })
 export class RepositorioModule {}

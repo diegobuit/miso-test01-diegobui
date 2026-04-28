@@ -1,9 +1,8 @@
 <div class="master-detail" [class.show-detail]="showDetail">
 
-  <!-- Master: lista de usuarios -->
   <section class="master-panel">
     <div class="master-header">
-      <h2 class="master-title">Github Users</h2>
+      <h2 class="master-title">Usuarios de GitHub</h2>
       <p class="master-subtitle">{{ filteredUsuarios.length }} de {{ usuarios.length }} miembros</p>
     </div>
 
@@ -35,7 +34,6 @@
     </div>
   </section>
 
-  <!-- Detail: detalle vía @Input — maestro-detalle por componentes (Punto 2) -->
   <section class="detail-panel">
     <button class="back-btn" (click)="goBack()">
       <span class="material-symbols-outlined">arrow_back</span>
