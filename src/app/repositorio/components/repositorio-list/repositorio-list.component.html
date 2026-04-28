@@ -1,0 +1,95 @@
+<div class="repos-layout" [class.show-detail]="showDetail">
+
+  <section class="master-panel">
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="material-symbols-outlined">folder_code</span>
+        <div>
+          <span class="stat-val">{{ repositorios.length }}</span>
+          <span class="stat-lbl">Repos</span>
+        </div>
+      </div>
+      <div class="stat-item">
+        <span class="material-symbols-outlined">star</span>
+        <div>
+          <span class="stat-val">{{ totalStars }}</span>
+          <span class="stat-lbl">Estrellas</span>
+        </div>
+      </div>
+      <div class="stat-item">
+        <span class="material-symbols-outlined">code</span>
+        <div>
+          <span class="stat-val">{{ uniqueLanguages }}</span>
+          <span class="stat-lbl">Lenguajes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="master-header">
+      <div>
+        <h2 class="master-title">Repositorios</h2>
+        <p class="master-subtitle">{{ filteredRepositorios.length }} de {{ repositorios.length }}</p>
+      </div>
+      <div class="sort-buttons">
+        <button class="sort-btn" [class.active]="sortBy === 'stars'" (click)="setSort('stars')" title="Ordenar por estrellas">
+          <span class="material-symbols-outlined">star</span>
+        </button>
+        <button class="sort-btn" [class.active]="sortBy === 'date'" (click)="setSort('date')" title="Ordenar por fecha">
+          <span class="material-symbols-outlined">calendar_today</span>
+        </button>
+        <button class="sort-btn" [class.active]="sortBy === 'name'" (click)="setSort('name')" title="Ordenar por nombre">
+          <span class="material-symbols-outlined">sort_by_alpha</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="repo-list" role="list">
+      @for (repo of filteredRepositorios; track repo.id) {
+        <a
+          class="repo-item"
+          [routerLink]="[repo.id]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onSelectRepo()"
+          role="listitem"
+        >
+          <div class="item-main">
+            <div class="item-title-row">
+              <span class="lang-dot" [style.background]="getLanguageColor(repo.language)"></span>
+              <span class="item-name">{{ repo.name }}</span>
+            </div>
+            <span class="item-date">{{ formatDate(repo.createdAt) }}</span>
+          </div>
+          <div class="stars-badge">
+            <span class="material-symbols-outlined">star</span>
+            <span>{{ repo.stars }}</span>
+          </div>
+        </a>
+      }
+
+      @if (filteredRepositorios.length === 0 && repositorios.length > 0) {
+        <div class="no-results">
+          <span class="material-symbols-outlined">search_off</span>
+          <p>Sin resultados</p>
+        </div>
+      }
+    </div>
+
+  </section>
+
+  <section class="detail-panel">
+    <button class="back-btn" (click)="goBack()">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Volver
+    </button>
+    <router-outlet />
+    @if (!hasSelection) {
+      <div class="empty-detail">
+        <span class="material-symbols-outlined">folder_open</span>
+        <p>Selecciona un repositorio para ver sus detalles</p>
+      </div>
+    }
+  </section>
+
+</div>

@@ -1,0 +1,68 @@
+@if (repositorio) {
+  <div class="detail-content">
+
+    <div class="detail-header">
+      <div class="repo-icon-wrap">
+        <span class="material-symbols-outlined">folder_open</span>
+      </div>
+      <div class="header-info">
+        <h2 class="detail-name">{{ repositorio.name }}</h2>
+        <p class="detail-desc">{{ repositorio.description }}</p>
+      </div>
+      <div class="stars-chip">
+        <span class="material-symbols-outlined">star</span>
+        <span class="stars-num">{{ repositorio.stars }}</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3 class="card-title">
+        <span class="material-symbols-outlined">info</span>
+        Información del Repositorio
+      </h3>
+      <div class="info-list">
+        <div class="info-row">
+          <span class="info-label">ID</span>
+          <code class="info-code">#{{ repositorio.id }}</code>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Nombre</span>
+          <span class="info-value">{{ repositorio.name }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Descripción</span>
+          <span class="info-value">{{ repositorio.description }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Lenguaje</span>
+          <div class="lang-row">
+            <span class="lang-dot" [style.background]="getLanguageColor(repositorio.language)"></span>
+            <span class="info-value">{{ repositorio.language }}</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Estrellas</span>
+          <div class="stars-row">
+            <span class="material-symbols-outlined">star</span>
+            <span class="info-value">{{ repositorio.stars }}</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Fecha de creación</span>
+          <span class="info-value">{{ formatDate(repositorio.createdAt) }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">ID del propietario</span>
+          <code class="info-code">{{ repositorio.ownerId }}</code>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+} @else if (notFound) {
+  <div class="not-found">
+    <span class="material-symbols-outlined">folder_off</span>
+    <p>Repositorio no encontrado</p>
+  </div>
+}
