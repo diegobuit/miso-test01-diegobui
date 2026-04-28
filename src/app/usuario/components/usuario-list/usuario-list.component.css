@@ -1,0 +1,122 @@
+:host {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+
+.master-detail {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Master Panel ── */
+.master-panel {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--clr-surface);
+  border-right: 1px solid var(--clr-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.master-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--clr-border);
+  background: var(--clr-bg);
+  flex-shrink: 0;
+}
+
+.master-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.master-subtitle {
+  font-size: 12px;
+  color: var(--clr-text-secondary);
+  margin-top: 2px;
+}
+
+.user-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ── User Item ── */
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--clr-border);
+  border-left: 3px solid transparent;
+  transition: background 0.1s ease;
+  outline: none;
+}
+
+.user-item:hover {
+  background: var(--clr-bg);
+}
+
+.user-item.active {
+  border-left-color: var(--clr-accent);
+  background: var(--clr-surface);
+}
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--clr-border);
+  flex-shrink: 0;
+}
+
+.user-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--clr-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-handle {
+  font-size: 11px;
+  color: var(--clr-text-secondary);
+}
+
+/* ── Role Badges ── */
+.role-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.role-admin    { background: #ddf4ff; color: #0969da; }
+.role-developer { background: #dafbe1; color: #1a7f37; }
+.role-designer  { background: #fff8c5; color: #9a6700; }
+
+/* ── Detail Panel ── */
+.detail-panel {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--clr-bg);
+  display: flex;
+}

@@ -1,0 +1,188 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+/* ── Contenido ── */
+.detail-content {
+  flex: 1;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 780px;
+}
+
+/* ── Tarjeta de perfil ── */
+.profile-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--clr-border);
+  flex-shrink: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--clr-text);
+}
+
+.profile-username {
+  font-size: 15px;
+  color: var(--clr-accent);
+  font-weight: 500;
+}
+
+/* ── Info Card ── */
+.info-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--clr-text);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--clr-border);
+  margin-bottom: 4px;
+}
+
+.card-title .material-symbols-outlined {
+  color: var(--clr-accent);
+  font-size: 20px;
+}
+
+/* ── Info Rows ── */
+.info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0F2F5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-secondary);
+}
+
+.info-value {
+  font-size: 13px;
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.info-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--clr-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--clr-accent);
+}
+
+.loc-icon {
+  font-size: 15px;
+  color: var(--clr-text-secondary);
+}
+
+/* ── Repo List ── */
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.repo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+}
+
+.repo-icon {
+  font-size: 16px;
+  color: var(--clr-accent);
+}
+
+.repo-id {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--clr-text);
+}
+
+.no-repos {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--clr-text-secondary);
+}
+
+/* ── Role Badges ── */
+.role-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: capitalize;
+  align-self: flex-start;
+}
+
+.role-admin    { background: #ddf4ff; color: #0969da; }
+.role-developer { background: #dafbe1; color: #1a7f37; }
+.role-designer  { background: #fff8c5; color: #9a6700; }
+
+/* ── Empty State ── */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--clr-text-secondary);
+}
+
+.empty-icon {
+  font-size: 52px;
+  color: var(--clr-border);
+}
