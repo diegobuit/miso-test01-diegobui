@@ -1,0 +1,34 @@
+<div class="master-detail">
+  <!-- Master: lista de usuarios -->
+  <section class="master-panel">
+    <div class="master-header">
+      <h2 class="master-title">Github Users</h2>
+      <p class="master-subtitle">{{ usuarios.length }} miembros</p>
+    </div>
+
+    <div class="user-list" role="list">
+      @for (usuario of usuarios; track usuario.id) {
+        <div
+          class="user-item"
+          [class.active]="selectedUsuario?.id === usuario.id"
+          (click)="selectUsuario(usuario)"
+          role="listitem"
+          tabindex="0"
+          (keydown.enter)="selectUsuario(usuario)"
+        >
+          <img [src]="usuario.avatarUrl" [alt]="usuario.name" class="user-avatar" />
+          <div class="user-meta">
+            <span class="user-name">{{ usuario.name }}</span>
+            <span class="user-handle">@{{ usuario.username }}</span>
+          </div>
+          <span class="role-badge role-{{ usuario.role }}">{{ usuario.role }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Detail: detalle del usuario seleccionado (Punto 2 - maestro-detalle por componentes) -->
+  <section class="detail-panel">
+    <app-usuario-detail [usuario]="selectedUsuario" />
+  </section>
+</div>

@@ -1,0 +1,77 @@
+@if (usuario) {
+  <div class="detail-content">
+
+    <!-- Tarjeta de perfil -->
+    <div class="profile-card">
+      <img [src]="usuario.avatarUrl" [alt]="usuario.name" class="profile-avatar" />
+      <div class="profile-info">
+        <h1 class="profile-name">{{ usuario.name }}</h1>
+        <p class="profile-username">&#64;{{ usuario.username }}</p>
+        <span class="role-badge role-{{ usuario.role }}">{{ usuario.role }}</span>
+      </div>
+    </div>
+
+    <!-- Tarjeta de información -->
+    <div class="info-card">
+      <h3 class="card-title">
+        <span class="material-symbols-outlined">person</span>
+        User Information
+      </h3>
+      <div class="info-list">
+        <div class="info-row">
+          <span class="info-label">User ID</span>
+          <code class="info-code">#{{ usuario.id }}</code>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Username</span>
+          <span class="info-value">{{ usuario.username }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Name</span>
+          <span class="info-value">{{ usuario.name }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ usuario.email }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Role</span>
+          <span class="info-value">{{ usuario.role }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-value">
+            <span class="material-symbols-outlined loc-icon">location_on</span>
+            {{ usuario.location }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de repositorios -->
+    <div class="info-card">
+      <h3 class="card-title">
+        <span class="material-symbols-outlined">folder_code</span>
+        Repository IDs
+      </h3>
+      @if (usuario.repoIds.length > 0) {
+        <div class="repo-list">
+          @for (repoId of usuario.repoIds; track repoId) {
+            <div class="repo-item">
+              <span class="material-symbols-outlined repo-icon">terminal</span>
+              <code class="repo-id">#{{ repoId }}</code>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-repos">Este usuario no tiene repositorios asignados.</p>
+      }
+    </div>
+
+  </div>
+} @else {
+  <div class="empty-state">
+    <span class="material-symbols-outlined empty-icon">person_search</span>
+    <p>Selecciona un usuario para ver sus detalles</p>
+  </div>
+}
