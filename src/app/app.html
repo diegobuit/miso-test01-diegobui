@@ -1,44 +1,71 @@
 <div class="app-wrapper">
+
+  <!-- Header -->
   <header class="app-header">
     <div class="header-left">
+      <button class="hamburger" (click)="toggleSidebar()" aria-label="Toggle menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
       <span class="material-symbols-outlined header-logo-icon">terminal</span>
       <span class="header-brand">DevConnect</span>
+      <div class="header-search">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input
+          type="text"
+          placeholder="Search users..."
+          class="search-input"
+          (input)="onSearch($event)"
+        />
+      </div>
     </div>
-    <div class="header-search">
-      <span class="material-symbols-outlined search-icon">search</span>
-      <input type="text" placeholder="Search or jump to..." class="search-input" />
+    <div class="header-right">
+      <button class="dark-toggle" (click)="toggleDark()" [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+        <span class="material-symbols-outlined">{{ isDark ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
     </div>
   </header>
 
+  <!-- Body -->
   <div class="app-body">
-    <aside class="app-sidebar">
+
+    <!-- Overlay (mobile) -->
+    @if (sidebarOpen) {
+      <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+    }
+
+    <!-- Sidebar -->
+    <aside class="app-sidebar" [class.open]="sidebarOpen">
       <div class="sidebar-portal">
         <div class="portal-icon-wrap">
           <span class="material-symbols-outlined">terminal</span>
         </div>
-        <div>
+        <div class="portal-text">
           <div class="portal-name">Developer Portal</div>
           <div class="portal-subtitle">ENTERPRISE HUB</div>
         </div>
       </div>
       <nav class="sidebar-nav">
-        <a routerLink="/usuarios" routerLinkActive="active" class="nav-link">
+        <a routerLink="/usuarios" routerLinkActive="active" class="nav-link" (click)="closeSidebar()">
           <span class="material-symbols-outlined">group</span>
-          <span>Users</span>
+          <span class="nav-label">Users</span>
         </a>
-        <a routerLink="/repositorios" routerLinkActive="active" class="nav-link">
+        <a routerLink="/repositorios" routerLinkActive="active" class="nav-link" (click)="closeSidebar()">
           <span class="material-symbols-outlined">folder_code</span>
-          <span>Repositories</span>
+          <span class="nav-label">Repositories</span>
         </a>
       </nav>
     </aside>
 
+    <!-- Main -->
     <main class="app-main">
       <router-outlet />
     </main>
+
   </div>
 
+  <!-- Footer -->
   <footer class="app-footer">
     <p>Universidad de los Andes &bull; MISO &bull; Parcial 1 &bull; Software WEB &bull; Diego Buitrago</p>
   </footer>
+
 </div>
