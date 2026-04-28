@@ -1,16 +1,16 @@
 :host {
   display: flex;
   flex: 1;
+  flex-direction: column;
 }
 
 /* ── Contenido ── */
 .detail-content {
   flex: 1;
-  padding: 28px 32px;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 780px;
+  gap: 16px;
 }
 
 /* ── Tarjeta de perfil ── */
@@ -18,15 +18,15 @@
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 22px 24px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .profile-avatar {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--clr-border);
@@ -36,11 +36,11 @@
 .profile-info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .profile-name {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--clr-text);
 }
@@ -56,43 +56,47 @@
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius);
-  padding: 20px 24px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* La última card ocupa el espacio restante de la pantalla */
+.info-card:last-child {
+  flex: 1;
 }
 
 .card-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--clr-text);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--clr-border);
   margin-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .card-title .material-symbols-outlined {
   color: var(--clr-accent);
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* ── Info Rows ── */
-.info-list {
-  display: flex;
-  flex-direction: column;
-}
+.info-list { display: flex; flex-direction: column; }
 
 .info-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 120px 1fr;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #F0F2F5;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--clr-border);
 }
 
-.info-row:last-child {
-  border-bottom: none;
-}
+.info-row:last-child { border-bottom: none; }
 
 .info-label {
   font-size: 13px;
@@ -117,33 +121,27 @@
   color: var(--clr-accent);
 }
 
-.loc-icon {
-  font-size: 15px;
-  color: var(--clr-text-secondary);
-}
+.loc-icon { font-size: 15px; color: var(--clr-text-secondary); }
 
 /* ── Repo List ── */
 .repo-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .repo-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   background: var(--clr-bg);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius);
 }
 
-.repo-icon {
-  font-size: 16px;
-  color: var(--clr-accent);
-}
+.repo-icon { font-size: 15px; color: var(--clr-accent); }
 
 .repo-id {
   font-family: var(--font-mono);
@@ -152,7 +150,7 @@
 }
 
 .no-repos {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 13px;
   color: var(--clr-text-secondary);
 }
@@ -167,9 +165,13 @@
   align-self: flex-start;
 }
 
-.role-admin    { background: #ddf4ff; color: #0969da; }
+.role-admin     { background: #ddf4ff; color: #0969da; }
 .role-developer { background: #dafbe1; color: #1a7f37; }
 .role-designer  { background: #fff8c5; color: #9a6700; }
+
+html.dark .role-admin     { background: #1c3354; color: #79b8ff; }
+html.dark .role-developer { background: #1b3a29; color: #56d364; }
+html.dark .role-designer  { background: #3d2e00; color: #e3b341; }
 
 /* ── Empty State ── */
 .empty-state {
@@ -185,4 +187,11 @@
 .empty-icon {
   font-size: 52px;
   color: var(--clr-border);
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .detail-content { padding: 16px; }
+  .profile-avatar { width: 56px; height: 56px; }
+  .profile-name   { font-size: 20px; }
 }

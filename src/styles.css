@@ -1,3 +1,4 @@
+/* ── CSS Variables (Light Mode) ── */
 :root {
   --clr-bg: #F6F8FA;
   --clr-surface: #FFFFFF;
@@ -10,9 +11,18 @@
   --radius: 6px;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
+/* ── Dark Mode ── */
+html.dark {
+  --clr-bg: #0D1117;
+  --clr-surface: #161B22;
+  --clr-border: #30363D;
+  --clr-text: #E6EDF3;
+  --clr-text-secondary: #7D8590;
+  --clr-accent: #2F81F7;
 }
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -23,9 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-}
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
