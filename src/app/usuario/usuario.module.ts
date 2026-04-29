@@ -5,13 +5,11 @@ import { UsuarioListComponent } from './components/usuario-list/usuario-list.com
 import { UsuarioDetailComponent } from './components/usuario-detail/usuario-detail.component';
 
 @NgModule({
-  declarations: [
-    UsuarioListComponent,
-    UsuarioDetailComponent
-  ],
   imports: [
     CommonModule,
-    UsuarioRoutingModule
+    UsuarioRoutingModule,
+    UsuarioListComponent,
+    UsuarioDetailComponent
   ]
 })
 export class UsuarioModule {}
