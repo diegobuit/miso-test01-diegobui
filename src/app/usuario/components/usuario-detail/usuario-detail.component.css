@@ -139,7 +139,24 @@
   background: var(--clr-bg);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
 }
+
+.repo-item:hover {
+  border-color: var(--clr-accent);
+  background: color-mix(in srgb, var(--clr-accent) 6%, var(--clr-bg));
+}
+
+.repo-arrow {
+  font-size: 15px;
+  color: var(--clr-accent);
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.repo-item:hover .repo-arrow { opacity: 1; }
 
 .repo-icon { font-size: 15px; color: var(--clr-accent); }
 
