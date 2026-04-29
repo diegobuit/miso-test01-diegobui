@@ -51,9 +51,13 @@
           <span class="info-label">Fecha de creación</span>
           <span class="info-value">{{ formatDate(repositorio.createdAt) }}</span>
         </div>
-        <div class="info-row">
-          <span class="info-label">ID del propietario</span>
-          <code class="info-code">{{ repositorio.ownerId }}</code>
+        <div class="info-row owner-row" (click)="irAUsuario(repositorio.ownerId)" title="Ver usuario propietario">
+          <span class="info-label">Propietario</span>
+          <div class="owner-link">
+            <span class="material-symbols-outlined">person</span>
+            <code class="info-code">Usuario #{{ repositorio.ownerId }}</code>
+            <span class="material-symbols-outlined owner-arrow">arrow_forward</span>
+          </div>
         </div>
       </div>
     </div>

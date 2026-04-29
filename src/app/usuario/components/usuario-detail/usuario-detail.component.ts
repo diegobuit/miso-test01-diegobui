@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 
 @Component({
@@ -9,4 +10,10 @@ import { Usuario } from '../../models/usuario';
 })
 export class UsuarioDetailComponent {
   @Input() usuario: Usuario | null = null;
+
+  private router = inject(Router);
+
+  irARepositorio(repoId: number): void {
+    this.router.navigate(['/repositorios', repoId]);
+  }
 }
