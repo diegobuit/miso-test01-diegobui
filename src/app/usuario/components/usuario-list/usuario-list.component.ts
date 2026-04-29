@@ -4,9 +4,11 @@ import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { SearchService } from '../../../services/search.service';
+import { UsuarioDetailComponent } from '../usuario-detail/usuario-detail.component';
 
 @Component({
-  standalone: false,
+  standalone: true,
+  imports: [UsuarioDetailComponent],
   selector: 'app-usuario-list',
   templateUrl: './usuario-list.component.html',
   styleUrl: './usuario-list.component.css'
@@ -37,7 +39,6 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
             )
           : data;
 
-        // Auto-selecciona usuario si viene desde detalle de repositorio
         const userId = this.route.snapshot.queryParams['userId'];
         if (userId && !this.selectedUsuario) {
           const usuario = data.find(u => u.id === Number(userId));
