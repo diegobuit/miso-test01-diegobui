@@ -54,9 +54,10 @@
       @if (usuario.repoIds.length > 0) {
         <div class="repo-list">
           @for (repoId of usuario.repoIds; track repoId) {
-            <div class="repo-item">
+            <div class="repo-item" (click)="irARepositorio(repoId)" title="Ver repositorio #{{ repoId }}">
               <span class="material-symbols-outlined repo-icon">terminal</span>
               <code class="repo-id">#{{ repoId }}</code>
+              <span class="material-symbols-outlined repo-arrow">arrow_forward</span>
             </div>
           }
         </div>

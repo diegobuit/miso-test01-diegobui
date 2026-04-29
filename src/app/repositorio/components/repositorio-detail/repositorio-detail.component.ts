@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Repositorio } from '../../models/repositorio';
@@ -14,6 +14,7 @@ import { RepositorioService } from '../../services/repositorio.service';
 })
 export class RepositorioDetailComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private repositorioService = inject(RepositorioService);
 
   repositorio: Repositorio | null = null;
@@ -35,6 +36,10 @@ export class RepositorioDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  irAUsuario(ownerId: number): void {
+    this.router.navigate(['/usuarios'], { queryParams: { userId: ownerId } });
   }
 
   getLanguageColor(language: string): string {

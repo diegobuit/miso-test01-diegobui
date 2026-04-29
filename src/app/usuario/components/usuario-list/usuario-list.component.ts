@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -13,6 +14,7 @@ import { SearchService } from '../../../services/search.service';
 export class UsuarioListComponent implements OnInit, OnDestroy {
   private usuarioService = inject(UsuarioService);
   private searchService  = inject(SearchService);
+  private route          = inject(ActivatedRoute);
 
   usuarios: Usuario[]         = [];
   filteredUsuarios: Usuario[] = [];
@@ -34,6 +36,13 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
               u.username.toLowerCase().includes(term.toLowerCase())
             )
           : data;
+
+        // Auto-selecciona usuario si viene desde detalle de repositorio
+        const userId = this.route.snapshot.queryParams['userId'];
+        if (userId && !this.selectedUsuario) {
+          const usuario = data.find(u => u.id === Number(userId));
+          if (usuario) this.selectUsuario(usuario);
+        }
       });
   }
 
